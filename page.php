@@ -111,41 +111,73 @@ $show_form = $_SERVER['REQUEST_METHOD'] === 'POST';
         .navbar nav a:hover {
             text-decoration: underline;
         }
-        .page-container {
-            max-width: 1120px;
-            margin: 28px auto;
-            padding: 0 18px;
+
+        .hero-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 8%;
+        gap: 50px;
         }
-        .card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 24px;
-        }
-        h1, h2, h3 {
-            margin-top: 0;
-        }
-        .hero-grid p {
-            line-height: 1.7;
-            margin-bottom: 18px;
-        }
-        .hero-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 40px 5%;
-            gap: 30px;
-        }
+
         .hero-text { flex: 1; }
         .hero-image { flex: 1; text-align: right; }
-        .hero-image img { max-width: 100%; border-radius: 15px; }
+        .hero-image img { 
+            width: 100%; 
+            max-width: 450px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        }
 
+      
+        .form-expand-area {
+            width: 80%;
+            margin: 50px auto; 
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .btn-start {
+            padding: 12px 30px;
+            background-color: #2607b1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .form-expand-area {
+            width: 84%;
+            margin: 0 auto 50px auto;
+            padding: 40px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 20px;
+        }
+        .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+        }
+        
+        .form-group-full {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .textarea, input[type="text"], input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+        }
         .btn-start {
             display: inline-block;
             padding: 12px 25px;
@@ -254,61 +286,91 @@ $show_form = $_SERVER['REQUEST_METHOD'] === 'POST';
         <div class="brand">Simply Fixed</div>
         <nav>
             <a href="../Login/Logout.php">Log Out</a>
-            <a href="#history">History</a>
+            <a href="../History/repair_history.php">History</a>
             <a href="#profile">Profile</a>
             <a href="#settings">Settings</a>
         </nav>
     </header>
 
     <main class="page-container">
-        <div class="card hero-card">
-            <div class="hero-grid">
-                <div>
-                    <h1>Temukan bengkel untuk kendaraan Anda</h1>
-                    <p>Isi detail kendaraan, keluhan, dan lokasi Anda. Sistem ini akan membantu mencari bengkel terbaik untuk jenis kendaraan Anda.</p>
-                    <p>Data kendaraan tersimpan akan otomatis muncul di bawah setelah login.</p>
-                </div>
-                <div class="info-box">
-                    <?php if (!isset($_GET['mulai'])): ?>
-    <div class="hero-wrapper">
-        <div class="hero-text">
-            <h1 style="font-family: 'Kanit', sans-serif;">Simply Fixed</h1>
-            <p>Solusi cerdas untuk kendala kendaraan Anda. Klik tombol di bawah untuk mulai mencari bengkel yang tepat.</p>
-            <a href="page.php?mulai=true" class="btn-start">Mulai Survey Sekarang</a>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1486006396113-c7b3df928c9f?q=80&w=500" alt="Repair">
-        </div>
+        <div class="hero-container">
+    <div class="hero-text">
+        <h1>Simply Fixed</h1>
+        <p>
+            Solusi praktis untuk kendala kendaraan Anda. Kami membantu diagnosa 
+            masalah dan menghubungkan Anda dengan bengkel tepercaya.
+        </p>
+        
+        <?php if (!isset($_GET['mulai'])): ?>
+            <a href="page.php?mulai=true#survey-section" class="btn-start">Mulai Survey Sekarang</a>
+        <?php endif; ?>
     </div>
 
-<?php else: ?>
-    <div class="container" style="margin-top: 20px;">
-        <div class="form-container" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-            <h2>Form Survey Kendaraan</h2>
-            
-            <form method="get" action="search_results.php">
-                <div class="form-group">
-                    <label for="vehicle_type">Vehicle Type</label>
-                    <input type="text" id="vehicle_type" name="vehicle_type" value="<?php echo htmlspecialchars($search_data['vehicle_type']); ?>" placeholder="Avanza, Vario, dll">
-                </div>
-                <div class="form-group">
-                    <label for="problem">Masalah / Keluhan</label>
-                    <textarea id="problem" name="problem" placeholder="Jelaskan masalah kendaraan Anda"><?php echo htmlspecialchars($search_data['problem']); ?></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="location">Lokasi Anda</label>
-                    <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($search_data['location']); ?>" placeholder="Kota atau alamat singkat">
-                </div>
-                <div class="form-group">
-                    <label for="service_date">Tanggal Rencana Servis</label>
-                    <input type="date" id="service_date" name="service_date" value="<?php echo htmlspecialchars($search_data['service_date']); ?>">
-                </div>
-                <button class="btn-primary" type="submit">Cari Bengkel</button>
-                <a href="page.php" style="margin-left: 10px; color: #666;">Batal</a>
-            </form>
-            </div>
+    <div class="hero-image">
+        <img src="path/ke/gambar-kamu.jpg" alt="Bengkel Illustration">
     </div>
-<?php endif; ?>
+</div>
+
+<div id="survey-section">
+    <?php if (isset($_GET['mulai'])): ?>
+        <div class="form-expand-area">
+            <h2 style="margin-bottom: 25px; color: #2607b1; text-align: center;">Detail Kendaraan & Keluhan</h2>
+            
+            <form method="POST" action="process.php"> <div class="form-grid">
+                    <div class="form-group">
+                        <label>Jenis Kendaraan</label>
+                        <select name="vehicle_category" required>
+                            <option value="">-- Pilih Jenis --</option>
+                            <option value="Sepeda Motor">Sepeda Motor</option>
+                            <option value="Mobil">Mobil</option>
+                            <option value="Truk">Truk</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor Plat (License Plate)</label>
+                        <input type="text" name="license_plate" placeholder="Contoh: B 1234 ABC" required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Brand / Merk</label>
+                        <input type="text" name="brand" placeholder="Contoh: Honda, Toyota" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipe Spesifik</label>
+                        <input type="text" name="vehicle_type" placeholder="Contoh: Vario 150, Avanza" required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Lokasi Anda</label>
+                        <input type="text" name="location" placeholder="Masukkan Kota" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Rencana Tanggal Servis</label>
+                        <input type="date" name="service_date" required>
+                    </div>
+                </div>
+
+                <div class="form-group-full">
+                    <label>Jelaskan Masalah / Keluhan</label>
+                    <textarea name="problem" rows="4" placeholder="Apa yang Anda rasakan pada kendaraan Anda?" required></textarea>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <button type="submit" class="btn-start" style="width: 100%; border:none; cursor:pointer;">Kirim Laporan & Cari Bengkel</button>
+                    <p style="margin-top: 15px;">
+                        <a href="page.php" style="color: #666; font-size: 14px; text-decoration: none;">× Batalkan Survey</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    <?php endif; ?>
+</div>
+</div>
+</div>  
                 </div>
             </div>
         </div>
