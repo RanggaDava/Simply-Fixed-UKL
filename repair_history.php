@@ -62,7 +62,7 @@ $result = mysqli_query($conn, $query);
 <body>
 
 <div class="container">
-    <a href="../MainPage/page.php" class="btn-back">← Kembali ke Utama</a>
+    <a href="../MainPage/page.php" class="btn-back">Kembali ke Utama</a>
     <h2>Riwayat Servis Anda</h2>
 
     <?php if (mysqli_num_rows($result) > 0): ?>
@@ -85,7 +85,7 @@ $result = mysqli_query($conn, $query);
         <div class="empty-state">
             <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" width="100" style="opacity: 0.2; margin-bottom: 20px;">
             <p>Belum ada riwayat survey atau reservasi.</p>
-            <a href="page.php?mulai=true" style="color: #2607b1; text-decoration: none; font-weight: bold;">Mulai Survey Sekarang</a>
+            <a href="../MainPage/page.php?mulai=true" style="color: #2607b1; text-decoration: none; font-weight: bold;">Mulai Survey Sekarang</a>
         </div>
     <?php endif; ?>
 </div>

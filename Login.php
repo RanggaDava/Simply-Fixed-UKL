@@ -22,16 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (password_verify($password, $db_password)) {
                 $_SESSION['id_user'] = $db_id;
                 $_SESSION['nama_lengkap'] = $db_nama;
-                $_SESSION['role'] = $db_role;
-
-                if (strtolower($db_role) === 'admin') {
+                $_SESSION['role'] = strtolower($db_role); 
+                if ($_SESSION['role'] === 'admin') {
                     header('Location: ../Admin/admin.php');
+                    exit(); 
                 } else {
                     header('Location: ../MainPage/page.php');
+                    exit();
                 }
-                exit();
             } else {
-                $error_message = 'Password salah!';
+                $error_message = 'Password yang Anda masukkan salah!';
             }
         } else {
             $error_message = 'User tidak ditemukan!';

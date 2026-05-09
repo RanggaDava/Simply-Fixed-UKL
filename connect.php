@@ -1,12 +1,12 @@
-<?php   
-
+<?php
 $host = "localhost";
-$username = "root";
-$password = "";
-$database = "bengkel_ukl";
+$user = "root";
+$pass = "";
+$db   = "bengkel_ukl"; // Pastikan nama database ini sama persis di phpMyAdmin
 
-$conn = new mysqli($host, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
 }
 ?>

@@ -126,7 +126,6 @@ $show_form = $_SERVER['REQUEST_METHOD'] === 'POST';
             width: 100%; 
             max-width: 450px; 
             border-radius: 15px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
         }
 
       
@@ -307,7 +306,7 @@ $show_form = $_SERVER['REQUEST_METHOD'] === 'POST';
     </div>
 
     <div class="hero-image">
-        <img src="path/ke/gambar-kamu.jpg" alt="Bengkel Illustration">
+        <img src="illustration.png" alt="Bengkel Illustration">
     </div>
 </div>
 
