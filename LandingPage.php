@@ -6,36 +6,39 @@
     <title>Simply Fixed - Solusi Servis Kendaraan Modern</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
         .hero {
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, #2607b1 0%, #4a00e0 100%);
-            background-color: #2607b1; 
+            background-color: #2607b1;
             height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white; 
+            color: white;
             padding: 0 20px;
         }
-
         .hero h1 {
             font-family: 'Kanit', sans-serif;
             font-size: 4rem;
             margin-bottom: 10px;
             letter-spacing: -1px;
         }
-
         .hero p {
             font-size: 1.2rem;
             font-weight: 300;
             margin-bottom: 40px;
             opacity: 0.9;
         }
-
         .btn-start {
             padding: 15px 40px;
             background-color: transparent;
@@ -47,21 +50,18 @@
             transition: all 0.3s ease;
             font-size: 1.1rem;
         }
-
         .btn-start:hover {
             background-color: white;
             color: #2607b1;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-
         .content {
             background-color: #1a1a1a;
             color: white;
             padding: 80px 10%;
             text-align: center;
         }
-
         .content h2 {
             font-family: 'Kanit', sans-serif;
             font-size: 2rem;

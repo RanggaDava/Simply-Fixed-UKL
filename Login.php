@@ -7,11 +7,12 @@ $error_message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_POST['username']) ? mysqli_real_escape_string($conn, $_POST['username']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $selected_role = isset($_POST['role']) ? strtolower($_POST['role']) : '';
 
     if (empty($username) || empty($password)) {
         $error_message = 'Username dan password harus diisi!';
     } else {
-        // cek tabel user dan role
+        // check user in database
         $stmt = $conn->prepare("SELECT id_user, nama_lengkap, password, role FROM user WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -20,15 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_result($db_id, $db_nama, $db_password, $db_role);
             $stmt->fetch();
             if (password_verify($password, $db_password)) {
-                $_SESSION['id_user'] = $db_id;
-                $_SESSION['nama_lengkap'] = $db_nama;
-                $_SESSION['role'] = strtolower($db_role); 
-                if ($_SESSION['role'] === 'admin') {
-                    header('Location: ../Admin/admin.php');
-                    exit(); 
+                // admin verification
+                if ($selected_role === 'admin' && strtolower($db_role) !== 'admin') {
+                    $error_message = 'Role yang dipilih tidak sesuai!';
                 } else {
-                    header('Location: ../MainPage/page.php');
-                    exit();
+                    $_SESSION['id_user'] = $db_id;
+                    $_SESSION['nama_lengkap'] = $db_nama;
+                    $_SESSION['role'] = strtolower($db_role);
+                    if ($_SESSION['role'] === 'admin') {
+                        header('Location: ../Admin/admin.php');
+                        exit();
+                    } else {
+                        header('Location: ../MainPage/page.php');
+                        exit();
+                    }
                 }
             } else {
                 $error_message = 'Password yang Anda masukkan salah!';
@@ -105,6 +111,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .link-row a:hover {
                 text-decoration: underline;
             }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f3f4f6;
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .container {
+                background-color: #ffffff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                width: 100%;
+                max-width: 420px;
+                padding: 24px;
+            }
+            h2 {
+                text-align: center;
+                margin-top: 0;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
+            input[type="text"],
+            input[type="password"],
+            select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            input[type="submit"] {
+                background-color: #2607b1;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+            .link-row {
+                margin-top: 16px;
+                text-align: center;
+            }
+            .link-row a {
+                color: #2607b1;
+                text-decoration: none;
+            }
+            .link-row a:hover {
+                text-decoration: underline;
+            }
         </style>
         <body>
             <div class="container">
@@ -121,8 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <label for="role">Role:</label>
                     <select id="role" name="role" required>
-                        <option value="admin">User</option>
-                        <option value="user">Admin</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
                     </select>
 
                     <input type="submit" value="Login">

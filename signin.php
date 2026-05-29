@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <title>Simply Fixed - Register</title>
         </head>
         <style>
-            body {
                 font-family: Arial, sans-serif;
                 background-color: #f3f4f6;
                 margin: 0;
@@ -88,6 +87,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 font-weight: 600;
             }
             input[type="text"], input[type="password"], select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            input[type="submit"] {
+                background-color: #2607b1;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+            .message {
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 4px;
+            }
+            .success {
+                background-color: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+            .error {
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+            }
+            .link-row {
+                margin-top: 16px;
+                text-align: center;
+            }
+            .link-row a {
+                color: #2607b1;
+                text-decoration: none;
+            }
+            .link-row a:hover {
+                text-decoration: underline;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f3f4f6;
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .container {
+                background-color: #ffffff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                width: 100%;
+                max-width: 420px;
+                padding: 24px;
+            }
+            h2 {
+                text-align: center;
+                margin-top: 0;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
+            input[type="text"],
+            input[type="password"],
+            select {
                 width: 100%;
                 padding: 10px;
                 margin-bottom: 12px;

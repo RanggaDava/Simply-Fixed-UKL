@@ -78,207 +78,7 @@ $show_form = $_SERVER['REQUEST_METHOD'] === 'POST';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard User</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #d7ecff;
-            color: #0f2240;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 28px;
-            background-color: #001b3f;
-            color: #ffffff;
-            flex-wrap: wrap;
-        }
-        .navbar .brand {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        .navbar nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .navbar nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-        .navbar nav a:hover {
-            text-decoration: underline;
-        }
-
-        .hero-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 60px 8%;
-        gap: 50px;
-        }
-
-        .hero-text { flex: 1; }
-        .hero-image { flex: 1; text-align: right; }
-        .hero-image img { 
-            width: 100%; 
-            max-width: 450px; 
-            border-radius: 15px; 
-        }
-
-      
-        .form-expand-area {
-            width: 80%;
-            margin: 50px auto; 
-            padding: 40px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-        }
-
-        .btn-start {
-            padding: 12px 30px;
-            background-color: #2607b1;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        .form-expand-area {
-            width: 84%;
-            margin: 0 auto 50px auto;
-            padding: 40px;
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 20px;
-        }
-        .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-bottom: 20px;
-        }
-        
-        .form-group-full {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .textarea, input[type="text"], input[type="date"],
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: white;
-        }
-        .btn-start {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #2607b1;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        .form-group {
-            margin-bottom: 16px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 11px 12px;
-            border: 1px solid #c4d6eb;
-            border-radius: 8px;
-            background-color: #f7fbff;
-            font-size: 0.96rem;
-            box-sizing: border-box;
-        }
-        .form-group textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
-        .btn-primary {
-            background-color: #001b3f;
-            color: white;
-            border: none;
-            padding: 12px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .btn-primary:hover {
-            background-color: #002c6c;
-        }
-        .info-box {
-            background-color: #eef6ff;
-            border: 1px solid #c9ddf5;
-            border-radius: 10px;
-            padding: 18px;
-        }
-        .info-box p {
-            margin: 10px 0;
-            line-height: 1.6;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
-        }
-        table th,
-        table td {
-            padding: 14px 10px;
-            border-bottom: 1px solid #e3edf7;
-            text-align: left;
-        }
-        table th {
-            background-color: #f1f7ff;
-        }
-        .grid-two {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 20px;
-        }
-        .link-row {
-            margin-top: 16px;
-            text-align: right;
-        }
-        .link-row a {
-            color: #001b3f;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .link-row a:hover {
-            text-decoration: underline;
-        }
-        .alert {
-            background-color: #e8f4ff;
-            padding: 10px 16px;
-            margin-bottom: 18px;
-        }
-        @media (max-width: 920px) {
-            .hero-grid,
-            .grid-two {
-                grid-template-columns: 1fr;
-            }
-            .navbar {
-                justify-content: center;
-                gap: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="page.css">
 </head>
 <body>
     <header class="navbar">
@@ -286,12 +86,13 @@ $show_form = $_SERVER['REQUEST_METHOD'] === 'POST';
         <nav>
             <a href="../Login/Logout.php">Log Out</a>
             <a href="../History/repair_history.php">History</a>
-            <a href="#profile">Profile</a>
+            <a href="../History/service_report.php">Service Report</a>
+            <a href="../LandingPage/LandingPage.php">Landing Page</a>
             <a href="#settings">Settings</a>
         </nav>
     </header>
 
-    <main class="page-container">
+    <main class="page-container" style="flex:1 0 auto;">
         <div class="hero-container">
     <div class="hero-text">
         <h1>Simply Fixed</h1>
@@ -366,12 +167,15 @@ $show_form = $_SERVER['REQUEST_METHOD'] === 'POST';
                 </div>
             </form>
         </div>
+
     <?php endif; ?>
 </div>
-</div>
-</div>  
-                </div>
-            </div>
-        </div>
+    <footer class="footer" style="flex-shrink:0;">
+        <p>&copy; 2026 Simply Fixed. All Rights Reserved.</p>
+        <p class="footer-subtext">Laporan Tugas Akhir UKL - SMK Telkom Sidoarjo</p>
+    </footer>
+    
+    </main>
+</body>
 
 
